@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "simulador-emprestimos",
-    "slug": "simulador-emprestimos",
+    "name": "simulador-de-emprestimos",
+    "slug": "simulador-de-emprestimos",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
