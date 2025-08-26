@@ -1,8 +1,18 @@
+import { Link } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 
-import api from "../../lib/api";
-import type { LoanProduct } from "../../utils/definitions";
+import {
+  ActivityIndicator,
+  Button,
+  FlatList,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+
+import api from "../../../lib/api";
+import type { LoanProduct } from "../../../utils/definitions";
 
 function LoanProductScreen() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -83,6 +93,9 @@ function LoanProductScreen() {
             : null
         }
       />
+      <Link href="/produtos/novo" push asChild>
+        <Button title="Novo Produto" />
+      </Link>
     </View>
   );
 }
