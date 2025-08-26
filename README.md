@@ -25,6 +25,33 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
+## Mock API (json-server)
+
+This project includes a mocked backend powered by `json-server`.
+
+- Resource: `loanProducts`
+- Fields:
+  - `name` (string)
+  - `annualInterestRate` (number, annual percent)
+  - `maximumTerm` (number, months)
+
+### Run the API
+
+```bash
+npm run api
+```
+
+API will be available at `http://localhost:4000`:
+
+- `GET /loanProducts`
+- `GET /loanProducts/:id`
+- `POST /loanProducts`
+- `PUT /loanProducts/:id`
+- `PATCH /loanProducts/:id`
+- `DELETE /loanProducts/:id`
+
+Seed data lives in `db.json` at the project root.
+
 ## Get a fresh project
 
 When you're ready, run:

@@ -1,0 +1,22 @@
+{
+  "loanProducts": [
+    {
+      "id": 1,
+      "name": "Pessoal Básico",
+      "annualInterestRate": 18.5,
+      "maximumTerm": 24
+    },
+    {
+      "id": 2,
+      "name": "Consignado Público",
+      "annualInterestRate": 14.9,
+      "maximumTerm": 48
+    },
+    {
+      "id": 3,
+      "name": "Imobiliário",
+      "annualInterestRate": 9.75,
+      "maximumTerm": 360
+    }
+  ]
+}
