@@ -30,13 +30,13 @@ function NewProductScreen() {
     const rate = Number(annualRate.replace(",", "."));
 
     if (Number.isNaN(rate) || rate <= 0) {
-      return { isValid: false, message: "Taxa anual deve ser um número maior que 0." };
+      return { isValid: false, message: "Taxa anual deve ser maior que 0." };
     }
 
     const term = Number(maximumTerm);
 
     if (!Number.isInteger(term) || term <= 0) {
-      return { isValid: false, message: "Prazo máximo deve ser um número maior que 0." };
+      return { isValid: false, message: "Prazo máximo deve ser maior que 0." };
     }
 
     return { isValid: true };

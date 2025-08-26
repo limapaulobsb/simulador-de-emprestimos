@@ -15,10 +15,10 @@ import api from "../../../lib/api";
 import type { LoanProduct } from "../../../utils/definitions";
 
 function LoanProductScreen() {
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
   const [products, setProducts] = useState<LoanProduct[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
   const loadProducts = async () => {
     setIsLoading(true);
