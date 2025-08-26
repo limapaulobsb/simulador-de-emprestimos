@@ -1,5 +1,5 @@
-import { Link } from "expo-router";
-import { useEffect, useState } from "react";
+import { Link, useFocusEffect } from "expo-router";
+import { useCallback, useEffect, useState } from "react";
 
 import {
   ActivityIndicator,
@@ -20,7 +20,7 @@ function LoanProductScreen() {
   const [products, setProducts] = useState<LoanProduct[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  async function loadProducts() {
+  const loadProducts = async () => {
     setIsLoading(true);
     setError(null);
 
@@ -32,9 +32,9 @@ function LoanProductScreen() {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
-  const onRefresh = async () => {
+  const refreshProducts = async () => {
     setIsRefreshing(true);
 
     try {
@@ -50,6 +50,13 @@ function LoanProductScreen() {
   useEffect(() => {
     loadProducts();
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      refreshProducts();
+      return undefined;
+    }, []),
+  );
 
   if (isLoading && products.length === 0) {
     return (
@@ -74,7 +81,7 @@ function LoanProductScreen() {
         data={products}
         keyExtractor={(item) => String(item.id ?? item.name)}
         contentContainerStyle={styles.list}
-        refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />}
+        refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={refreshProducts} />}
         renderItem={({ item }) => (
           <View style={styles.card}>
             <Text style={styles.productName}>{item.name}</Text>
@@ -105,10 +112,11 @@ export default LoanProductScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 24,
   },
   list: {
-    alignItems: "center",
     flex: 1,
+    gap: 12,
     justifyContent: "center",
   },
   centeredContainer: {
@@ -127,12 +135,11 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderRadius: 8,
     borderWidth: 1,
-    marginBottom: 12,
+    gap: 4,
     padding: 12,
   },
   productName: {
     fontSize: 16,
     fontWeight: "bold",
-    marginBottom: 4,
   },
 });
