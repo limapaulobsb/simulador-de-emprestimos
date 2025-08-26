@@ -78,6 +78,7 @@ function LoanProductScreen() {
   return (
     <View style={styles.container}>
       <FlatList
+        style={styles.listContainer}
         data={products}
         keyExtractor={(item) => String(item.id ?? item.name)}
         contentContainerStyle={styles.list}
@@ -112,12 +113,15 @@ export default LoanProductScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
+    gap: 12,
+    paddingHorizontal: 24,
+    paddingVertical: 40,
+  },
+  listContainer: {
+    flex: 1,
   },
   list: {
-    flex: 1,
     gap: 12,
-    justifyContent: "center",
   },
   centeredContainer: {
     alignItems: "center",
