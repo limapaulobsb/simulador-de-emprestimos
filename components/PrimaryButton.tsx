@@ -1,20 +1,22 @@
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Colors, Spacings } from "../constants";
 import globalStyles from "../styles";
 
-function PrimaryButton({
-  children,
-  variant = "primary",
-  isLoading = false,
-  onPress = () => {},
-}: {
+type Props = {
   children: ReactNode;
   variant?: "primary" | "secondary" | "secondaryOutlined";
   isLoading?: boolean;
   onPress?: () => void;
-}) {
+};
+
+function PrimaryButton({
+  children,
+  variant = "primary",
+  isLoading = false,
+  onPress = () => { },
+}: Props) {
   let backgroundColor = Colors.secondary90;
   let borderColor = "transparent";
   let borderWidth = 0;

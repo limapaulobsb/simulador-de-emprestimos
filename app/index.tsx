@@ -4,9 +4,12 @@ import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform } fro
 
 import { PrimaryButton } from "@/components";
 import { Colors, Spacings } from "@/constants";
+import { useUser } from "@/contexts";
 import globalStyles from "@/styles";
 
 function IndexScreen() {
+  const { name, setName } = useUser();
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -25,6 +28,8 @@ function IndexScreen() {
             style={globalStyles.input}
             placeholder="Digite seu nome..."
             placeholderTextColor={Colors.greyscale90}
+            value={name}
+            onChangeText={setName}
           />
           <Link href="/produtos" push asChild>
             <PrimaryButton>Entrar</PrimaryButton>

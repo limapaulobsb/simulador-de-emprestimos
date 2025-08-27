@@ -5,11 +5,13 @@ import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } f
 
 import { PrimaryButton } from "../../../components";
 import { Colors, Spacings } from "../../../constants";
+import { useUser } from "../../../contexts";
 import api from "../../../lib/api";
 import globalStyles from "../../../styles";
 import type { LoanProduct } from "../../../utils/definitions";
 
 function LoanProductScreen() {
+  const { name } = useUser();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
@@ -72,6 +74,9 @@ function LoanProductScreen() {
 
   return (
     <View style={styles.container}>
+      {name ? (
+        <Text style={globalStyles.textStandard}>Olá, {name}!</Text>
+      ) : null}
       <FlatList
         style={styles.listContainer}
         data={products}
