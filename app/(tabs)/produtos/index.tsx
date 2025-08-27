@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 import { PrimaryButton } from "../../../components";
+import { Colors } from "../../../constants";
 import api from "../../../lib/api";
 import type { LoanProduct } from "../../../utils/definitions";
 
@@ -133,11 +134,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   errorText: {
-    color: "red",
+    color: Colors.negative70,
   },
   card: {
-    backgroundColor: "#fff",
-    borderColor: "#ddd",
+    backgroundColor: Colors.greyscale10,
+    borderColor: Colors.greyscale50,
     borderRadius: 8,
     borderWidth: 1,
     gap: 4,
@@ -145,6 +146,6 @@ const styles = StyleSheet.create({
   },
   productName: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 600,
   },
 });

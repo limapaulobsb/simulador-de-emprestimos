@@ -1,0 +1,26 @@
+const Colors = {
+  primary90: "#005ca9",
+  primary70: "#2d8ad8",
+  secondary90: "#d87b00",
+  secondary70: "#f39200",
+  tertiary90: "#359485",
+  tertiary70: "#54bbab",
+  ceu70: "#00b4e6",
+  uva70: "#b26f9b",
+  limao70: "afca0b",
+  tangerina70: "#00b4e6",
+  goiaba70: "#ef765e",
+  greyscale130: "#22292e",
+  greyscale110: "#404b52",
+  greyscale90: "#64747a",
+  greyscale70: "#9eb2b8",
+  greyscale50: "#d0e0e3",
+  greyscale30: "#ebf1f2",
+  greyscale10: "#f7fafa",
+  positive70: "#179231",
+  attention70: "#fcbe05",
+  negative70: "#d93636",
+  informative70: "#04a2bf",
+};
+
+export default Colors;

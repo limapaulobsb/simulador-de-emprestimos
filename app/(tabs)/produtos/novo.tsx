@@ -14,6 +14,7 @@ import {
 } from "react-native";
 
 import { PrimaryButton } from "../../../components";
+import { Colors } from "../../../constants";
 import api from "../../../lib/api";
 
 function NewProductScreen() {
@@ -141,8 +142,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   input: {
-    backgroundColor: "#fff",
-    borderColor: "#ddd",
+    backgroundColor: Colors.greyscale10,
+    borderColor: Colors.greyscale50,
     borderRadius: 8,
     borderWidth: 1,
     padding: 12,
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   errorText: {
-    color: "red",
+    color: Colors.negative70,
     marginBottom: 12,
   },
 });

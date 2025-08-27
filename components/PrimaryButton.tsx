@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 
+import { Colors } from "../constants";
+
 function PrimaryButton({
   children,
   isLoading,
@@ -34,13 +36,13 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     alignItems: "center",
-    backgroundColor: "#005ca9",
+    backgroundColor: Colors.primary90,
     flex: 1,
     justifyContent: "center",
     padding: 10,
   },
   text: {
-    color: "#fff",
+    color: Colors.greyscale10,
     fontSize: 16,
     fontWeight: 500,
   },

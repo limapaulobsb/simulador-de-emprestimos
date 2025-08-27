@@ -16,6 +16,7 @@ import {
 } from "react-native";
 
 import { PrimaryButton, SimulationResultModal } from "../../components";
+import { Colors } from "../../constants";
 import api from "../../lib/api";
 import { simulateLoan } from "../../utils/calculations";
 import type { LoanProduct, SimulationResult } from "../../utils/definitions";
@@ -239,8 +240,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   input: {
-    backgroundColor: "#fff",
-    borderColor: "#ddd",
+    backgroundColor: Colors.greyscale10,
+    borderColor: Colors.greyscale50,
     borderRadius: 8,
     borderWidth: 1,
     padding: 12,
@@ -249,8 +250,8 @@ const styles = StyleSheet.create({
     gap: 0,
   },
   selector: {
-    backgroundColor: "#fff",
-    borderColor: "#ddd",
+    backgroundColor: Colors.greyscale10,
+    borderColor: Colors.greyscale50,
     borderRadius: 8,
     borderWidth: 1,
     padding: 12,
@@ -259,15 +260,15 @@ const styles = StyleSheet.create({
     color: "#111",
   },
   dropdown: {
-    backgroundColor: "#fff",
-    borderColor: "#ddd",
+    backgroundColor: Colors.greyscale10,
+    borderColor: Colors.greyscale50,
     borderRadius: 8,
     borderWidth: 1,
     maxHeight: 220,
     overflow: "hidden",
   },
   dropdownItem: {
-    borderBottomColor: "#eee",
+    borderBottomColor: Colors.greyscale30,
     borderBottomWidth: 1,
     paddingHorizontal: 12,
     paddingVertical: 10,
@@ -286,7 +287,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   errorText: {
-    color: "red",
+    color: Colors.negative70,
     marginBottom: 12,
   },
 });

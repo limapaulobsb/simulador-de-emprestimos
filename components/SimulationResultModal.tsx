@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { Button, Modal, ScrollView, StyleSheet, Text, View } from "react-native";
 
+import { Colors } from "../constants";
 import type { SimulationResult } from "../utils/definitions";
 import { formatCurrencyBRL, formatPercentBR } from "../utils/formatters";
 
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: Colors.greyscale10,
     borderRadius: 12,
     gap: 24,
     height: "80%",
@@ -92,15 +93,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   label: {
-    color: "#444",
+    color: Colors.greyscale110,
     fontWeight: "600",
   },
   value: {
-    color: "#111",
+    color: Colors.greyscale130,
     fontWeight: "500",
   },
   scheduleRow: {
-    borderTopColor: "#eee",
+    borderTopColor: Colors.greyscale30,
     borderTopWidth: 1,
     paddingTop: 6,
   },
