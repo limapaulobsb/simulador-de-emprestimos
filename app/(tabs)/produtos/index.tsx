@@ -36,14 +36,14 @@ export default function LoanProductScreen() {
   if (productError && products.length === 0) {
     return (
       <View style={styles.centeredContainer}>
-        <Text style={styles.errorText}>{productError}</Text>
+        <Text style={globalStyles.textError}>{productError}</Text>
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
-      {name ? <Text style={globalStyles.textStandard}>Olá, {name}!</Text> : null}
+      {name ? <Text style={globalStyles.textLargeMedium}>Olá, {name}!</Text> : null}
       <FlatList
         style={styles.listContainer}
         data={products}
@@ -69,7 +69,7 @@ export default function LoanProductScreen() {
         }
       />
       <Link href="/produtos/novo" push asChild>
-        <PrimaryButton>Novo Produto</PrimaryButton>
+        <PrimaryButton>Cadastrar Produto</PrimaryButton>
       </Link>
     </View>
   );
@@ -78,15 +78,15 @@ export default function LoanProductScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: Spacings.micro,
-    paddingHorizontal: Spacings.smaller,
+    gap: Spacings.small,
+    paddingHorizontal: Spacings.small,
     paddingVertical: Spacings.medium,
   },
   listContainer: {
     flex: 1,
   },
   list: {
-    gap: Spacings.micro,
+    gap: Spacings.tiny,
   },
   centeredContainer: {
     alignItems: "center",
@@ -96,15 +96,12 @@ const styles = StyleSheet.create({
   loadingText: {
     marginTop: Spacings.nano,
   },
-  errorText: {
-    color: Colors.negative70,
-  },
   card: {
     backgroundColor: Colors.greyscale10,
     borderColor: Colors.greyscale50,
     borderRadius: Spacings.nano,
     borderWidth: 1,
-    gap: Spacings.quark,
-    padding: Spacings.micro,
+    gap: Spacings.nano,
+    padding: Spacings.tiny,
   },
 });

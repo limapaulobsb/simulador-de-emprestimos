@@ -127,7 +127,7 @@ export default function LoanSimulationScreen() {
             <Text style={globalStyles.label}>Produto</Text>
             <View>
               <Pressable style={styles.selector} onPress={() => setIsSelectorOpen((v) => !v)}>
-                <Text style={styles.auxiliaryText}>
+                <Text style={globalStyles.textLarge}>
                   {selectedProduct ? selectedProduct.name : "Selecione um produto"}
                 </Text>
               </Pressable>
@@ -150,7 +150,7 @@ export default function LoanSimulationScreen() {
                         >
                           <Text style={globalStyles.textSmallMedium}>{item.name}</Text>
                           <Text style={styles.dropdownItemDescription}>
-                            Taxa anual: {item.annualInterestRate}% — Máx: {item.maximumTerm} meses
+                            Taxa: {item.annualInterestRate}% — Prazo: {item.maximumTerm} meses
                           </Text>
                         </Pressable>
                       ))
@@ -186,14 +186,14 @@ export default function LoanSimulationScreen() {
             />
             {selectedProduct ? (
               <Text style={styles.auxiliaryText}>
-                Máximo permitido para este produto: {selectedProduct.maximumTerm} meses
+                * Máximo permitido para este produto: {selectedProduct.maximumTerm} meses
               </Text>
             ) : null}
           </View>
           {formError ? <Text style={globalStyles.textError}>{formError}</Text> : null}
           <View style={styles.actionContainer}>
             <PrimaryButton isLoading={isLoading} onPress={handleSubmit}>
-              Fazer simulação
+              Fazer Simulação
             </PrimaryButton>
           </View>
         </ScrollView>
@@ -209,9 +209,8 @@ export default function LoanSimulationScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    gap: Spacings.micro,
-    paddingHorizontal: Spacings.smaller,
-    paddingVertical: Spacings.medium,
+    gap: Spacings.tiny,
+    padding: Spacings.small,
   },
   centeredContainer: {
     alignItems: "center",
@@ -222,14 +221,16 @@ const styles = StyleSheet.create({
     marginTop: Spacings.nano,
   },
   formGroup: {
-    gap: Spacings.quark,
+    gap: Spacings.nano,
   },
   selector: {
     backgroundColor: Colors.greyscale10,
     borderColor: Colors.greyscale50,
     borderRadius: Spacings.nano,
     borderWidth: 1,
-    padding: Spacings.micro,
+    height: Spacings.larger,
+    justifyContent: "center",
+    paddingHorizontal: Spacings.micro,
   },
   dropdown: {
     backgroundColor: Colors.greyscale10,
@@ -242,8 +243,7 @@ const styles = StyleSheet.create({
   dropdownItem: {
     borderBottomColor: Colors.greyscale30,
     borderBottomWidth: 1,
-    paddingHorizontal: Spacings.micro,
-    paddingVertical: Spacings.micro,
+    padding: Spacings.micro,
   },
   dropdownItemDescription: {
     color: Colors.greyscale90,
@@ -252,7 +252,6 @@ const styles = StyleSheet.create({
     color: Colors.greyscale110,
   },
   actionContainer: {
-    gap: Spacings.quark,
-    marginTop: Spacings.micro,
+    gap: Spacings.nano,
   },
 });

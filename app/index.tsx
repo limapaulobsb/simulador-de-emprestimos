@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary110,
     gap: Spacings.medium,
     height: 280,
-    paddingHorizontal: Spacings.medium,
+    paddingHorizontal: Spacings.small,
   },
   form: {
-    gap: Spacings.micro,
+    gap: Spacings.tiny,
   },
 });

@@ -17,49 +17,55 @@ export default function SimulationResultModal({ result, visible, onClose }: Prop
   return (
     <Modal visible={visible} animationType="fade" onRequestClose={onClose} transparent>
       <View style={styles.overlay}>
-        <View style={styles.card}>
+        <View style={styles.container}>
           <Text style={globalStyles.headingSmall}>Resultado da simulação</Text>
           {result ? (
-            <ScrollView contentContainerStyle={{ gap: 8 }}>
-              <View style={styles.row}>
-                <Text style={globalStyles.label}>Produto</Text>
-                <Text style={globalStyles.textSmallMedium}>{result.product.name}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={globalStyles.label}>Valor solicitado</Text>
-                <Text style={globalStyles.textSmallMedium}>
-                  {formatCurrencyBRL(result.principal)}
-                </Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={globalStyles.label}>Prazo</Text>
-                <Text style={globalStyles.textSmallMedium}>{`${result.term} meses`}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={globalStyles.label}>Taxa efetiva mensal</Text>
-                <Text style={globalStyles.textSmallMedium}>
-                  {formatPercentBR(result.monthlyRate * 100)}
-                </Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={globalStyles.label}>Parcela mensal</Text>
-                <Text style={globalStyles.textSmallMedium}>
-                  {formatCurrencyBRL(result.payment)}
-                </Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={globalStyles.label}>Valor total com juros</Text>
-                <Text style={globalStyles.textSmallMedium}>{formatCurrencyBRL(result.total)}</Text>
-              </View>
-              <Text style={globalStyles.textStandardMedium}>Memória de cálculo</Text>
-              {result.schedule.map((row) => (
-                <View key={row.month} style={styles.scheduleRow}>
-                  <Text>{`Mês ${row.month}`}</Text>
-                  <Text>{`Juros ${formatCurrencyBRL(row.interest)}`}</Text>
-                  <Text>{`Amortização: ${formatCurrencyBRL(row.amortization)}`}</Text>
-                  <Text>{`Saldo: ${formatCurrencyBRL(row.balance)}`}</Text>
+            <ScrollView contentContainerStyle={styles.scrollableContainer}>
+              <View style={styles.summaryContainer}>
+                <View style={styles.summaryRow}>
+                  <Text style={globalStyles.label}>Produto:</Text>
+                  <Text style={globalStyles.textSmallMedium}>{result.product.name}</Text>
                 </View>
-              ))}
+                <View style={styles.summaryRow}>
+                  <Text style={globalStyles.label}>Valor solicitado:</Text>
+                  <Text style={globalStyles.textSmallMedium}>
+                    {formatCurrencyBRL(result.principal)}
+                  </Text>
+                </View>
+                <View style={styles.summaryRow}>
+                  <Text style={globalStyles.label}>Prazo</Text>
+                  <Text style={globalStyles.textSmallMedium}>{`${result.term} meses`}</Text>
+                </View>
+                <View style={styles.summaryRow}>
+                  <Text style={globalStyles.label}>Taxa efetiva mensal:</Text>
+                  <Text style={globalStyles.textSmallMedium}>
+                    {formatPercentBR(result.monthlyRate * 100)}
+                  </Text>
+                </View>
+                <View style={styles.summaryRow}>
+                  <Text style={globalStyles.label}>Parcela mensal:</Text>
+                  <Text style={globalStyles.textSmallMedium}>
+                    {formatCurrencyBRL(result.payment)}
+                  </Text>
+                </View>
+                <View style={styles.summaryRow}>
+                  <Text style={globalStyles.label}>Valor total com juros:</Text>
+                  <Text style={globalStyles.textSmallMedium}>
+                    {formatCurrencyBRL(result.total)}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.scheduleContainer}>
+                <Text style={globalStyles.textStandardMedium}>Memória de cálculo</Text>
+                {result.schedule.map((row) => (
+                  <View key={row.month} style={styles.scheduleRow}>
+                    <Text style={globalStyles.textSmallMedium}>{`Mês ${row.month}`}</Text>
+                    <Text>{`Juros ${formatCurrencyBRL(row.interest)}`}</Text>
+                    <Text>{`Amortização: ${formatCurrencyBRL(row.amortization)}`}</Text>
+                    <Text>{`Saldo: ${formatCurrencyBRL(row.balance)}`}</Text>
+                  </View>
+                ))}
+              </View>
             </ScrollView>
           ) : null}
           <PrimaryButton onPress={onClose}>Fechar</PrimaryButton>
@@ -77,22 +83,31 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: Spacings.smaller,
   },
-  card: {
+  container: {
     backgroundColor: Colors.greyscale10,
     borderRadius: Spacings.micro,
-    gap: Spacings.smaller,
+    gap: Spacings.small,
     height: "80%",
     overflow: "hidden",
     padding: Spacings.smaller,
     width: "100%",
   },
-  row: {
+  scrollableContainer: {
+    gap: Spacings.small,
+  },
+  summaryContainer: {
+    gap: Spacings.nano,
+  },
+  summaryRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  scheduleContainer: {
+    gap: Spacings.nano,
   },
   scheduleRow: {
     borderTopColor: Colors.greyscale30,
     borderTopWidth: 1,
-    paddingTop: Spacings.nano,
+    paddingVertical: Spacings.nano,
   },
 });

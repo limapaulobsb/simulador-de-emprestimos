@@ -42,6 +42,10 @@ const globalStyles = StyleSheet.create({
   textLarge: {
     fontSize: 18,
   },
+  textLargeMedium: {
+    fontSize: 18,
+    fontWeight: "500",
+  },
   textStandard: {
     fontSize: 16,
   },

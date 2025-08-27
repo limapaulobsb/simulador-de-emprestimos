@@ -80,6 +80,7 @@ export default function NewProductScreen() {
       behavior={Platform.select({ ios: "padding", android: undefined })}
     >
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+        <Text style={globalStyles.headingTiny}>Cadastro de Produto</Text>
         <View style={styles.formGroup}>
           <Text style={globalStyles.label}>Nome</Text>
           <TextInput
@@ -134,14 +135,13 @@ export default function NewProductScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    gap: Spacings.micro,
-    padding: Spacings.smaller,
+    gap: Spacings.tiny,
+    padding: Spacings.small,
   },
   formGroup: {
-    gap: Spacings.quark,
+    gap: Spacings.nano,
   },
   actionContainer: {
-    gap: Spacings.quark,
-    marginTop: Spacings.micro,
+    gap: Spacings.nano,
   },
 });

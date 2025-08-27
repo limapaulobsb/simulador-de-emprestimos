@@ -41,7 +41,7 @@ export default function PrimaryButton({
         {isLoading ? (
           <ActivityIndicator color={textColor} />
         ) : (
-          <Text style={[globalStyles.textStandardMedium, { color: textColor }]}>{children}</Text>
+          <Text style={[globalStyles.textLargeMedium, { color: textColor }]}>{children}</Text>
         )}
       </Pressable>
     </View>
@@ -51,7 +51,7 @@ export default function PrimaryButton({
 const styles = StyleSheet.create({
   outerContainer: {
     borderRadius: Spacings.nano,
-    height: Spacings.large,
+    height: Spacings.larger,
     minWidth: Spacings.giant,
     overflow: "hidden",
   },
@@ -59,6 +59,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     justifyContent: "center",
-    padding: Spacings.quark,
   },
 });

@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.primary90,
     elevation: 4,
-    paddingBottom: Spacings.tiny,
-    paddingHorizontal: Spacings.tiny,
+    paddingBottom: Spacings.small,
+    paddingHorizontal: Spacings.small,
     paddingTop: Spacings.big,
   },
 });
