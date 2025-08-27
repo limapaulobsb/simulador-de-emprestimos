@@ -123,7 +123,7 @@ export default function NewProductScreen() {
           <PrimaryButton variant="secondaryOutlined" onPress={() => router.back()}>
             Cancelar
           </PrimaryButton>
-          <PrimaryButton onPress={handleSubmit}>Salvar</PrimaryButton>
+          <PrimaryButton isLoading={isLoading} onPress={handleSubmit}>Salvar</PrimaryButton>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

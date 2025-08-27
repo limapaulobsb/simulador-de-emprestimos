@@ -205,7 +205,7 @@ export default function LoanSimulationScreen() {
         </View>
         {formError ? <Text style={globalStyles.textError}>{formError}</Text> : null}
         <View style={styles.actionContainer}>
-          <PrimaryButton onPress={handleSubmit}>Simular</PrimaryButton>
+          <PrimaryButton isLoading={isLoading} onPress={handleSubmit}>Simular</PrimaryButton>
         </View>
       </ScrollView>
       <SimulationResultModal
