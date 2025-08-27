@@ -14,7 +14,7 @@ import {
   View,
 } from "react-native";
 
-import { PrimaryButton, SimulationResultModal } from "@/components";
+import { Header, PrimaryButton, SimulationResultModal } from "@/components";
 import { Colors, Spacings } from "@/constants";
 import { useProducts } from "@/contexts";
 import globalStyles from "@/styles";
@@ -116,91 +116,94 @@ export default function LoanSimulationScreen() {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.select({ ios: "padding", android: undefined })}
-    >
-      <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-        <View style={styles.formGroup}>
-          <Text style={globalStyles.label}>Produto</Text>
-          <View>
-            <Pressable style={styles.selector} onPress={() => setIsSelectorOpen((v) => !v)}>
+    <>
+      <Header title={"Simulação"} />
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.select({ ios: "padding", android: undefined })}
+      >
+        <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+          <View style={styles.formGroup}>
+            <Text style={globalStyles.label}>Produto</Text>
+            <View>
+              <Pressable style={styles.selector} onPress={() => setIsSelectorOpen((v) => !v)}>
+                <Text style={styles.auxiliaryText}>
+                  {selectedProduct ? selectedProduct.name : "Selecione um produto"}
+                </Text>
+              </Pressable>
+              {isSelectorOpen ? (
+                <View style={styles.dropdown}>
+                  <ScrollView nestedScrollEnabled>
+                    {products.length === 0 ? (
+                      <View style={{ padding: 12 }}>
+                        <Text>Nenhum produto cadastrado.</Text>
+                      </View>
+                    ) : (
+                      products.map((item) => (
+                        <Pressable
+                          key={String(item.id ?? item.name)}
+                          style={styles.dropdownItem}
+                          onPress={() => {
+                            setSelectedProductId(item.id ?? null);
+                            setIsSelectorOpen(false);
+                          }}
+                        >
+                          <Text style={globalStyles.textSmallMedium}>{item.name}</Text>
+                          <Text style={styles.dropdownItemDescription}>
+                            Taxa anual: {item.annualInterestRate}% — Máx: {item.maximumTerm} meses
+                          </Text>
+                        </Pressable>
+                      ))
+                    )}
+                  </ScrollView>
+                </View>
+              ) : null}
+            </View>
+          </View>
+          <View style={styles.formGroup}>
+            <Text style={globalStyles.label}>Valor do empréstimo</Text>
+            <TextInput
+              style={globalStyles.input}
+              placeholder="Ex.: 10000,00"
+              placeholderTextColor={Colors.greyscale90}
+              keyboardType="decimal-pad"
+              value={amount}
+              onChangeText={setAmount}
+              returnKeyType="next"
+            />
+          </View>
+          <View style={styles.formGroup}>
+            <Text style={globalStyles.label}>Número de parcelas</Text>
+            <TextInput
+              style={globalStyles.input}
+              placeholder={selectedProduct ? `Até ${selectedProduct.maximumTerm}` : "Ex.: 12"}
+              placeholderTextColor={Colors.greyscale90}
+              keyboardType="number-pad"
+              value={installments}
+              maxLength={3}
+              onChangeText={setInstallments}
+              returnKeyType="done"
+            />
+            {selectedProduct ? (
               <Text style={styles.auxiliaryText}>
-                {selectedProduct ? selectedProduct.name : "Selecione um produto"}
+                Máximo permitido para este produto: {selectedProduct.maximumTerm} meses
               </Text>
-            </Pressable>
-            {isSelectorOpen ? (
-              <View style={styles.dropdown}>
-                <ScrollView nestedScrollEnabled>
-                  {products.length === 0 ? (
-                    <View style={{ padding: 12 }}>
-                      <Text>Nenhum produto cadastrado.</Text>
-                    </View>
-                  ) : (
-                    products.map((item) => (
-                      <Pressable
-                        key={String(item.id ?? item.name)}
-                        style={styles.dropdownItem}
-                        onPress={() => {
-                          setSelectedProductId(item.id ?? null);
-                          setIsSelectorOpen(false);
-                        }}
-                      >
-                        <Text style={globalStyles.textSmallMedium}>{item.name}</Text>
-                        <Text style={styles.dropdownItemDescription}>
-                          Taxa anual: {item.annualInterestRate}% — Máx: {item.maximumTerm} meses
-                        </Text>
-                      </Pressable>
-                    ))
-                  )}
-                </ScrollView>
-              </View>
             ) : null}
           </View>
-        </View>
-        <View style={styles.formGroup}>
-          <Text style={globalStyles.label}>Valor do empréstimo</Text>
-          <TextInput
-            style={globalStyles.input}
-            placeholder="Ex.: 10000,00"
-            placeholderTextColor={Colors.greyscale90}
-            keyboardType="decimal-pad"
-            value={amount}
-            onChangeText={setAmount}
-            returnKeyType="next"
-          />
-        </View>
-        <View style={styles.formGroup}>
-          <Text style={globalStyles.label}>Número de parcelas</Text>
-          <TextInput
-            style={globalStyles.input}
-            placeholder={selectedProduct ? `Até ${selectedProduct.maximumTerm}` : "Ex.: 12"}
-            placeholderTextColor={Colors.greyscale90}
-            keyboardType="number-pad"
-            value={installments}
-            maxLength={3}
-            onChangeText={setInstallments}
-            returnKeyType="done"
-          />
-          {selectedProduct ? (
-            <Text style={styles.auxiliaryText}>
-              Máximo permitido para este produto: {selectedProduct.maximumTerm} meses
-            </Text>
-          ) : null}
-        </View>
-        {formError ? <Text style={globalStyles.textError}>{formError}</Text> : null}
-        <View style={styles.actionContainer}>
-          <PrimaryButton isLoading={isLoading} onPress={handleSubmit}>
-            Fazer simulação
-          </PrimaryButton>
-        </View>
-      </ScrollView>
-      <SimulationResultModal
-        result={result}
-        visible={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
-    </KeyboardAvoidingView>
+          {formError ? <Text style={globalStyles.textError}>{formError}</Text> : null}
+          <View style={styles.actionContainer}>
+            <PrimaryButton isLoading={isLoading} onPress={handleSubmit}>
+              Fazer simulação
+            </PrimaryButton>
+          </View>
+        </ScrollView>
+        <SimulationResultModal
+          result={result}
+          visible={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      </KeyboardAvoidingView>
+    </>
   );
 }
 

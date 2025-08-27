@@ -8,10 +8,10 @@ export default function RootLayout() {
     <UserProvider>
       <ProductProvider>
         <StatusBar style="dark" />
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+        <Stack screenOptions={{ animation: "fade", headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="+not-found" />
         </Stack>
       </ProductProvider>
     </UserProvider>

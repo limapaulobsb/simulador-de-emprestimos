@@ -1,10 +1,15 @@
 import { Stack } from "expo-router";
 
+import { Header } from "@/components";
+
 export default function StackLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="novo" options={{ title: "Novo Produto" }} />
-    </Stack>
+    <>
+      <Header title={"Produtos"} />
+      <Stack screenOptions={{ animation: "fade", headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="novo" />
+      </Stack>
+    </>
   );
 }
