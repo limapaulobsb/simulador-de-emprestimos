@@ -2,10 +2,10 @@ import { memo } from "react";
 import { Modal, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import PrimaryButton from "./PrimaryButton";
-import { Colors, Spacings } from "../constants";
-import globalStyles from "../styles";
-import type { SimulationResult } from "../utils/definitions";
-import { formatCurrencyBRL, formatPercentBR } from "../utils/formatters";
+import { Colors, Spacings } from "@/constants";
+import globalStyles from "@/styles";
+import type { SimulationResult } from "@/utils/definitions";
+import { formatCurrencyBRL, formatPercentBR } from "@/utils/formatters";
 
 type Props = {
   result: SimulationResult | null;
@@ -13,7 +13,7 @@ type Props = {
   onClose: () => void;
 };
 
-function SimulationResultModal({ result, visible, onClose }: Props) {
+export default function SimulationResultModal({ result, visible, onClose }: Props) {
   return (
     <Modal visible={visible} animationType="fade" onRequestClose={onClose} transparent>
       <View style={styles.overlay}>
@@ -96,5 +96,3 @@ const styles = StyleSheet.create({
     paddingTop: Spacings.nano,
   },
 });
-
-export default memo(SimulationResultModal);

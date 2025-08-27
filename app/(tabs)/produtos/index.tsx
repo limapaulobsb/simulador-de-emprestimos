@@ -1,16 +1,15 @@
 import { Link, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-
 import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 
-import { PrimaryButton } from "../../../components";
-import { Colors, Spacings } from "../../../constants";
-import { useUser } from "../../../contexts";
-import api from "../../../lib/api";
-import globalStyles from "../../../styles";
-import type { LoanProduct } from "../../../utils/definitions";
+import { PrimaryButton } from "@/components";
+import { Colors, Spacings } from "@/constants";
+import { useUser } from "@/contexts";
+import api from "@/lib/api";
+import globalStyles from "@/styles";
+import type { LoanProduct } from "@/utils/definitions";
 
-function LoanProductScreen() {
+export default function LoanProductScreen() {
   const { name } = useUser();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -74,9 +73,7 @@ function LoanProductScreen() {
 
   return (
     <View style={styles.container}>
-      {name ? (
-        <Text style={globalStyles.textStandard}>Olá, {name}!</Text>
-      ) : null}
+      {name ? <Text style={globalStyles.textStandard}>Olá, {name}!</Text> : null}
       <FlatList
         style={styles.listContainer}
         data={products}
@@ -107,8 +104,6 @@ function LoanProductScreen() {
     </View>
   );
 }
-
-export default LoanProductScreen;
 
 const styles = StyleSheet.create({
   container: {

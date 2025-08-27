@@ -12,12 +12,12 @@ import {
   View,
 } from "react-native";
 
-import { PrimaryButton } from "../../../components";
-import { Colors, Spacings } from "../../../constants";
-import api from "../../../lib/api";
-import globalStyles from "../../../styles";
+import { PrimaryButton } from "@/components";
+import { Colors, Spacings } from "@/constants";
+import api from "@/lib/api";
+import globalStyles from "@/styles";
 
-function NewProductScreen() {
+export default function NewProductScreen() {
   const [name, setName] = useState<string>("");
   const [annualRate, setAnnualRate] = useState<string>("");
   const [maximumTerm, setMaximumTerm] = useState<string>("");
@@ -129,8 +129,6 @@ function NewProductScreen() {
     </KeyboardAvoidingView>
   );
 }
-
-export default NewProductScreen;
 
 const styles = StyleSheet.create({
   container: {

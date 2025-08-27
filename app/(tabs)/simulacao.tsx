@@ -14,14 +14,14 @@ import {
   View,
 } from "react-native";
 
-import { PrimaryButton, SimulationResultModal } from "../../components";
-import { Colors, Spacings } from "../../constants";
-import api from "../../lib/api";
-import globalStyles from "../../styles";
-import { simulateLoan } from "../../utils/calculations";
-import type { LoanProduct, SimulationResult } from "../../utils/definitions";
+import { PrimaryButton, SimulationResultModal } from "@/components";
+import { Colors, Spacings } from "@/constants";
+import api from "@/lib/api";
+import globalStyles from "@/styles";
+import { simulateLoan } from "@/utils/calculations";
+import type { LoanProduct, SimulationResult } from "@/utils/definitions";
 
-function LoanSimulationScreen() {
+export default function LoanSimulationScreen() {
   const [amount, setAmount] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
@@ -216,8 +216,6 @@ function LoanSimulationScreen() {
     </KeyboardAvoidingView>
   );
 }
-
-export default LoanSimulationScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -7,14 +7,14 @@ import { Colors, Spacings } from "@/constants";
 import { useUser } from "@/contexts";
 import globalStyles from "@/styles";
 
-function IndexScreen() {
+export default function IndexScreen() {
   const { name, setName } = useUser();
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -85}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : -85}
     >
       <Image
         source={require("../assets/images/background.png")}
@@ -22,7 +22,9 @@ function IndexScreen() {
         style={styles.image}
       />
       <View style={styles.content}>
-        <Text style={[globalStyles.headingStandard, { color: Colors.greyscale10 }]}>Simulador de Empréstimos</Text>
+        <Text style={[globalStyles.headingStandard, { color: Colors.greyscale10 }]}>
+          Simulador de Empréstimos
+        </Text>
         <View style={styles.form}>
           <TextInput
             style={globalStyles.input}
@@ -40,8 +42,6 @@ function IndexScreen() {
   );
 }
 
-export default IndexScreen;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -57,5 +57,5 @@ const styles = StyleSheet.create({
   },
   form: {
     gap: Spacings.micro,
-  }
+  },
 });
