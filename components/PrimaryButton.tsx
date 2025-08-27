@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 
-import { Colors } from "../constants";
+import { Colors, Spacings } from "../constants";
 
 function PrimaryButton({
   children,
@@ -49,16 +49,16 @@ export default PrimaryButton;
 
 const styles = StyleSheet.create({
   outerContainer: {
-    borderRadius: 8,
-    height: 48,
-    minWidth: 48,
+    borderRadius: Spacings.nano,
+    height: Spacings.large,
+    minWidth: Spacings.large,
     overflow: "hidden",
   },
   innerContainer: {
     alignItems: "center",
     flex: 1,
     justifyContent: "center",
-    padding: 4,
+    padding: Spacings.quark,
   },
   text: {
     fontSize: 16,

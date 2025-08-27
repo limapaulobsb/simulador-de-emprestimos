@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import {
   Alert,
-  Button,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -14,7 +13,7 @@ import {
 } from "react-native";
 
 import { PrimaryButton } from "../../../components";
-import { Colors } from "../../../constants";
+import { Colors, Spacings } from "../../../constants";
 import api from "../../../lib/api";
 
 function NewProductScreen() {
@@ -136,11 +135,11 @@ export default NewProductScreen;
 
 const styles = StyleSheet.create({
   container: {
-    gap: 12,
-    padding: 24,
+    gap: Spacings.micro,
+    padding: Spacings.smaller,
   },
   formGroup: {
-    gap: 4,
+    gap: Spacings.quark,
   },
   label: {
     fontWeight: "600",
@@ -148,16 +147,16 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: Colors.greyscale10,
     borderColor: Colors.greyscale50,
-    borderRadius: 8,
+    borderRadius: Spacings.nano,
     borderWidth: 1,
-    padding: 12,
+    padding: Spacings.micro,
   },
   actionContainer: {
-    gap: 4,
-    marginTop: 12,
+    gap: Spacings.quark,
+    marginTop: Spacings.micro,
   },
   errorText: {
     color: Colors.negative70,
-    marginBottom: 12,
+    marginBottom: Spacings.micro,
   },
 });

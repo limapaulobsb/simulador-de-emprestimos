@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from "react";
 
 import {
   ActivityIndicator,
-  Button,
   FlatList,
   RefreshControl,
   StyleSheet,
@@ -12,7 +11,7 @@ import {
 } from "react-native";
 
 import { PrimaryButton } from "../../../components";
-import { Colors } from "../../../constants";
+import { Colors, Spacings } from "../../../constants";
 import api from "../../../lib/api";
 import type { LoanProduct } from "../../../utils/definitions";
 
@@ -115,15 +114,15 @@ export default LoanProductScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: 12,
-    paddingHorizontal: 24,
-    paddingVertical: 40,
+    gap: Spacings.micro,
+    paddingHorizontal: Spacings.smaller,
+    paddingVertical: Spacings.medium,
   },
   listContainer: {
     flex: 1,
   },
   list: {
-    gap: 12,
+    gap: Spacings.micro,
   },
   centeredContainer: {
     alignItems: "center",
@@ -131,7 +130,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   loadingText: {
-    marginTop: 8,
+    marginTop: Spacings.nano,
   },
   errorText: {
     color: Colors.negative70,
@@ -139,10 +138,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: Colors.greyscale10,
     borderColor: Colors.greyscale50,
-    borderRadius: 8,
+    borderRadius: Spacings.nano,
     borderWidth: 1,
-    gap: 4,
-    padding: 12,
+    gap: Spacings.quark,
+    padding: Spacings.micro,
   },
   productName: {
     fontSize: 16,

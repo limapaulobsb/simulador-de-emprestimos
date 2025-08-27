@@ -1,7 +1,8 @@
 import { memo } from "react";
-import { Button, Modal, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Modal, ScrollView, StyleSheet, Text, View } from "react-native";
 
-import { Colors } from "../constants";
+import PrimaryButton from "./PrimaryButton";
+import { Colors, Spacings } from "../constants";
 import type { SimulationResult } from "../utils/definitions";
 import { formatCurrencyBRL, formatPercentBR } from "../utils/formatters";
 
@@ -54,9 +55,7 @@ function SimulationResultModal({ result, visible, onClose }: Props) {
               ))}
             </ScrollView>
           ) : null}
-          <View style={{ gap: 8, marginTop: 12 }}>
-            <Button title="Fechar" onPress={onClose} />
-          </View>
+          <PrimaryButton onPress={onClose}>Fechar</PrimaryButton>
         </View>
       </View>
     </Modal>
@@ -69,15 +68,15 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 24,
+    paddingHorizontal: Spacings.smaller,
   },
   card: {
     backgroundColor: Colors.greyscale10,
-    borderRadius: 12,
-    gap: 24,
+    borderRadius: Spacings.micro,
+    gap: Spacings.smaller,
     height: "80%",
     overflow: "hidden",
-    padding: 24,
+    padding: Spacings.smaller,
     width: "100%",
   },
   title: {
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
   scheduleRow: {
     borderTopColor: Colors.greyscale30,
     borderTopWidth: 1,
-    paddingTop: 6,
+    paddingTop: Spacings.nano,
   },
 });
 

@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
-  Button,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -16,7 +15,7 @@ import {
 } from "react-native";
 
 import { PrimaryButton, SimulationResultModal } from "../../components";
-import { Colors } from "../../constants";
+import { Colors, Spacings } from "../../constants";
 import api from "../../lib/api";
 import { simulateLoan } from "../../utils/calculations";
 import type { LoanProduct, SimulationResult } from "../../utils/definitions";
@@ -138,7 +137,7 @@ function LoanSimulationScreen() {
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
         <View style={styles.formGroup}>
           <Text style={styles.label}>Produto</Text>
-          <View style={styles.selectorContainer}>
+          <View>
             <Pressable style={styles.selector} onPress={() => setIsSelectorOpen((v) => !v)}>
               <Text style={styles.selectorText}>
                 {selectedProduct ? selectedProduct.name : "Selecione um produto"}
@@ -221,9 +220,9 @@ export default LoanSimulationScreen;
 
 const styles = StyleSheet.create({
   container: {
-    gap: 12,
-    paddingHorizontal: 24,
-    paddingVertical: 40,
+    gap: Spacings.micro,
+    paddingHorizontal: Spacings.smaller,
+    paddingVertical: Spacings.medium,
   },
   centeredContainer: {
     alignItems: "center",
@@ -231,10 +230,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   loadingText: {
-    marginTop: 8,
+    marginTop: Spacings.nano,
   },
   formGroup: {
-    gap: 4,
+    gap: Spacings.quark,
   },
   label: {
     fontWeight: "600",
@@ -242,19 +241,16 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: Colors.greyscale10,
     borderColor: Colors.greyscale50,
-    borderRadius: 8,
+    borderRadius: Spacings.nano,
     borderWidth: 1,
-    padding: 12,
-  },
-  selectorContainer: {
-    gap: 0,
+    padding: Spacings.micro,
   },
   selector: {
     backgroundColor: Colors.greyscale10,
     borderColor: Colors.greyscale50,
-    borderRadius: 8,
+    borderRadius: Spacings.nano,
     borderWidth: 1,
-    padding: 12,
+    padding: Spacings.micro,
   },
   selectorText: {
     color: "#111",
@@ -262,16 +258,16 @@ const styles = StyleSheet.create({
   dropdown: {
     backgroundColor: Colors.greyscale10,
     borderColor: Colors.greyscale50,
-    borderRadius: 8,
+    borderRadius: Spacings.nano,
     borderWidth: 1,
-    maxHeight: 220,
+    maxHeight: 240,
     overflow: "hidden",
   },
   dropdownItem: {
     borderBottomColor: Colors.greyscale30,
     borderBottomWidth: 1,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
+    paddingHorizontal: Spacings.micro,
+    paddingVertical: Spacings.micro,
   },
   dropdownItemTitle: {
     fontWeight: "600",
@@ -283,11 +279,11 @@ const styles = StyleSheet.create({
     color: "#555",
   },
   actionContainer: {
-    gap: 4,
-    marginTop: 12,
+    gap: Spacings.quark,
+    marginTop: Spacings.micro,
   },
   errorText: {
     color: Colors.negative70,
-    marginBottom: 12,
+    marginBottom: Spacings.micro,
   },
 });
