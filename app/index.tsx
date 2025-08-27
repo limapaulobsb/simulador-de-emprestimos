@@ -1,4 +1,7 @@
+import { Link } from "expo-router";
 import { Text, View } from "react-native";
+
+import { PrimaryButton } from "@/components";
 
 export default function Index() {
   return (
@@ -9,7 +12,9 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Index</Text>
+      <Link href="/produtos" push asChild>
+        <PrimaryButton>Entrar</PrimaryButton>
+      </Link>
     </View>
   );
 }

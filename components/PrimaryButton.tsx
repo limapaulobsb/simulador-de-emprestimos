@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   outerContainer: {
     borderRadius: Spacings.nano,
     height: Spacings.large,
-    minWidth: Spacings.large,
+    minWidth: Spacings.giant,
     overflow: "hidden",
   },
   innerContainer: {
