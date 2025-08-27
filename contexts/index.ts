@@ -1,3 +1,4 @@
+import { ProductProvider, useProducts } from "./ProductContext";
 import { UserProvider, useUser } from "./UserContext";
 
-export { UserProvider, useUser };
+export { ProductProvider, useProducts, UserProvider, useUser };

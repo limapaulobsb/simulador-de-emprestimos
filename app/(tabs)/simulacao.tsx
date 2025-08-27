@@ -16,20 +16,19 @@ import {
 
 import { PrimaryButton, SimulationResultModal } from "@/components";
 import { Colors, Spacings } from "@/constants";
-import api from "@/lib/api";
+import { useProducts } from "@/contexts";
 import globalStyles from "@/styles";
 import { simulateLoan } from "@/utils/calculations";
 import type { LoanProduct, SimulationResult } from "@/utils/definitions";
 
 export default function LoanSimulationScreen() {
+  const { isLoading, productError, products, loadProducts } = useProducts();
+
   const [amount, setAmount] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [installments, setInstallments] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isSelectorOpen, setIsSelectorOpen] = useState<boolean>(false);
-  const [products, setProducts] = useState<LoanProduct[]>([]);
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
 
@@ -37,20 +36,6 @@ export default function LoanSimulationScreen() {
     () => products.find((p) => p.id === selectedProductId) ?? null,
     [products, selectedProductId],
   );
-
-  const loadProducts = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const data = await api.list();
-      setProducts(data);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Erro ao carregar produtos");
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const validate = (): { isValid: boolean; message?: string } => {
     if (!selectedProduct) {
@@ -104,13 +89,13 @@ export default function LoanSimulationScreen() {
 
   useEffect(() => {
     loadProducts();
-  }, []);
+  }, [loadProducts]);
 
   useFocusEffect(
     useCallback(() => {
       loadProducts();
       return undefined;
-    }, []),
+    }, [loadProducts]),
   );
 
   if (isLoading && products.length === 0) {
@@ -122,10 +107,10 @@ export default function LoanSimulationScreen() {
     );
   }
 
-  if (error && products.length === 0) {
+  if (productError && products.length === 0) {
     return (
       <View style={styles.centeredContainer}>
-        <Text style={globalStyles.textError}>{error}</Text>
+        <Text style={globalStyles.textError}>{productError}</Text>
       </View>
     );
   }
@@ -205,7 +190,9 @@ export default function LoanSimulationScreen() {
         </View>
         {formError ? <Text style={globalStyles.textError}>{formError}</Text> : null}
         <View style={styles.actionContainer}>
-          <PrimaryButton isLoading={isLoading} onPress={handleSubmit}>Simular</PrimaryButton>
+          <PrimaryButton isLoading={isLoading} onPress={handleSubmit}>
+            Fazer simulação
+          </PrimaryButton>
         </View>
       </ScrollView>
       <SimulationResultModal

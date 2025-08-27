@@ -1,47 +1,17 @@
 import { Link, useFocusEffect } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 
 import { PrimaryButton } from "@/components";
 import { Colors, Spacings } from "@/constants";
-import { useUser } from "@/contexts";
-import api from "@/lib/api";
+import { useProducts, useUser } from "@/contexts";
 import globalStyles from "@/styles";
-import type { LoanProduct } from "@/utils/definitions";
 
 export default function LoanProductScreen() {
+  const { isLoading, isRefreshing, productError, products, loadProducts, refreshProducts } =
+    useProducts();
+
   const { name } = useUser();
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
-  const [products, setProducts] = useState<LoanProduct[]>([]);
-
-  const loadProducts = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const data = await api.list();
-      setProducts(data);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Erro ao carregar produtos");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const refreshProducts = async () => {
-    setIsRefreshing(true);
-
-    try {
-      const data = await api.list();
-      setProducts(data);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Erro ao atualizar produtos");
-    } finally {
-      setIsRefreshing(false);
-    }
-  };
 
   useEffect(() => {
     loadProducts();
@@ -63,10 +33,10 @@ export default function LoanProductScreen() {
     );
   }
 
-  if (error && products.length === 0) {
+  if (productError && products.length === 0) {
     return (
       <View style={styles.centeredContainer}>
-        <Text style={styles.errorText}>{error}</Text>
+        <Text style={styles.errorText}>{productError}</Text>
       </View>
     );
   }

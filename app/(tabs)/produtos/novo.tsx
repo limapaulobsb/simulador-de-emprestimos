@@ -22,7 +22,7 @@ export default function NewProductScreen() {
   const [annualRate, setAnnualRate] = useState<string>("");
   const [maximumTerm, setMaximumTerm] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const validate = (): { isValid: boolean; message?: string } => {
     if (!name.trim()) {
@@ -45,11 +45,11 @@ export default function NewProductScreen() {
   };
 
   const handleSubmit = async () => {
-    setError(null);
+    setFormError(null);
     const validation = validate();
 
     if (!validation.isValid) {
-      setError(validation.message ?? "Dados inválidos.");
+      setFormError(validation.message ?? "Dados inválidos.");
       Alert.alert("Formulário inválido", validation.message);
       return;
     }
@@ -67,7 +67,7 @@ export default function NewProductScreen() {
       router.back();
     } catch (e) {
       const message = e instanceof Error ? e.message : "Erro ao salvar produto.";
-      setError(message);
+      setFormError(message);
       Alert.alert("Erro", message);
     } finally {
       setIsLoading(false);
@@ -118,12 +118,14 @@ export default function NewProductScreen() {
             returnKeyType="done"
           />
         </View>
-        {error ? <Text style={globalStyles.textError}>{error}</Text> : null}
+        {formError ? <Text style={globalStyles.textError}>{formError}</Text> : null}
         <View style={styles.actionContainer}>
           <PrimaryButton variant="secondaryOutlined" onPress={() => router.back()}>
             Cancelar
           </PrimaryButton>
-          <PrimaryButton isLoading={isLoading} onPress={handleSubmit}>Salvar</PrimaryButton>
+          <PrimaryButton isLoading={isLoading} onPress={handleSubmit}>
+            Salvar
+          </PrimaryButton>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
