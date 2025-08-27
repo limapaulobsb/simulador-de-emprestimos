@@ -15,8 +15,10 @@ import {
   View,
 } from "react-native";
 
+import SimulationResultModal from "../../components/SimulationResultModal";
 import api from "../../lib/api";
-import type { LoanProduct } from "../../utils/definitions";
+import { simulateLoan } from "../../utils/calculations";
+import type { LoanProduct, SimulationResult } from "../../utils/definitions";
 
 function LoanSimulationScreen() {
   const [amount, setAmount] = useState<string>("");
@@ -24,8 +26,10 @@ function LoanSimulationScreen() {
   const [formError, setFormError] = useState<string | null>(null);
   const [installments, setInstallments] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isSelectorOpen, setIsSelectorOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<LoanProduct[]>([]);
+  const [result, setResult] = useState<SimulationResult | null>(null);
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
 
   const selectedProduct = useMemo(
@@ -87,10 +91,14 @@ function LoanSimulationScreen() {
     const parsedAmount = Number(amount.replace(",", "."));
     const parsedInstallments = Number(installments);
 
-    Alert.alert(
-      "Dados da simulação",
-      `Produto: ${selectedProduct?.name}\nValor: ${parsedAmount.toFixed(2)}\nParcelas: ${parsedInstallments}`,
+    const simulation = simulateLoan(
+      selectedProduct as LoanProduct,
+      parsedAmount,
+      parsedInstallments,
     );
+
+    setResult(simulation);
+    setIsModalOpen(true);
   };
 
   useEffect(() => {
@@ -198,6 +206,11 @@ function LoanSimulationScreen() {
           <Button title="Simular" onPress={handleSubmit} />
         </View>
       </ScrollView>
+      <SimulationResultModal
+        result={result}
+        visible={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </KeyboardAvoidingView>
   );
 }
