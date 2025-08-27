@@ -15,6 +15,7 @@ import {
 import { PrimaryButton } from "../../../components";
 import { Colors, Spacings } from "../../../constants";
 import api from "../../../lib/api";
+import globalStyles from "../../../styles";
 
 function NewProductScreen() {
   const [name, setName] = useState<string>("");
@@ -80,7 +81,7 @@ function NewProductScreen() {
     >
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Nome</Text>
+          <Text style={globalStyles.label}>Nome</Text>
           <TextInput
             style={styles.input}
             placeholder="Ex.: Empréstimo Pessoal"
@@ -92,7 +93,7 @@ function NewProductScreen() {
           />
         </View>
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Taxa anual (%)</Text>
+          <Text style={globalStyles.label}>Taxa anual (%)</Text>
           <TextInput
             style={styles.input}
             placeholder="Ex.: 12.5"
@@ -105,7 +106,7 @@ function NewProductScreen() {
           />
         </View>
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Prazo máximo (meses)</Text>
+          <Text style={globalStyles.label}>Prazo máximo (meses)</Text>
           <TextInput
             style={styles.input}
             placeholder="Ex.: 60"
@@ -117,14 +118,12 @@ function NewProductScreen() {
             returnKeyType="done"
           />
         </View>
-        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+        {error ? <Text style={globalStyles.textError}>{error}</Text> : null}
         <View style={styles.actionContainer}>
           <PrimaryButton variant="secondaryOutlined" onPress={() => router.back()}>
             Cancelar
           </PrimaryButton>
-          <PrimaryButton onPress={handleSubmit}>
-            Salvar
-          </PrimaryButton>
+          <PrimaryButton onPress={handleSubmit}>Salvar</PrimaryButton>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -141,9 +140,6 @@ const styles = StyleSheet.create({
   formGroup: {
     gap: Spacings.quark,
   },
-  label: {
-    fontWeight: "600",
-  },
   input: {
     backgroundColor: Colors.greyscale10,
     borderColor: Colors.greyscale50,
@@ -154,9 +150,5 @@ const styles = StyleSheet.create({
   actionContainer: {
     gap: Spacings.quark,
     marginTop: Spacings.micro,
-  },
-  errorText: {
-    color: Colors.negative70,
-    marginBottom: Spacings.micro,
   },
 });

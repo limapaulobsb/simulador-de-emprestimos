@@ -17,6 +17,7 @@ import {
 import { PrimaryButton, SimulationResultModal } from "../../components";
 import { Colors, Spacings } from "../../constants";
 import api from "../../lib/api";
+import globalStyles from "../../styles";
 import { simulateLoan } from "../../utils/calculations";
 import type { LoanProduct, SimulationResult } from "../../utils/definitions";
 
@@ -124,7 +125,7 @@ function LoanSimulationScreen() {
   if (error && products.length === 0) {
     return (
       <View style={styles.centeredContainer}>
-        <Text style={styles.errorText}>{error}</Text>
+        <Text style={globalStyles.textError}>{error}</Text>
       </View>
     );
   }
@@ -136,10 +137,10 @@ function LoanSimulationScreen() {
     >
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Produto</Text>
+          <Text style={globalStyles.label}>Produto</Text>
           <View>
             <Pressable style={styles.selector} onPress={() => setIsSelectorOpen((v) => !v)}>
-              <Text style={styles.selectorText}>
+              <Text style={styles.auxiliaryText}>
                 {selectedProduct ? selectedProduct.name : "Selecione um produto"}
               </Text>
             </Pressable>
@@ -160,8 +161,8 @@ function LoanSimulationScreen() {
                           setIsSelectorOpen(false);
                         }}
                       >
-                        <Text style={styles.dropdownItemTitle}>{item.name}</Text>
-                        <Text style={styles.dropdownItemSub}>
+                        <Text style={globalStyles.textSmallMedium}>{item.name}</Text>
+                        <Text style={styles.dropdownItemDescription}>
                           Taxa anual: {item.annualInterestRate}% — Máx: {item.maximumTerm} meses
                         </Text>
                       </Pressable>
@@ -173,7 +174,7 @@ function LoanSimulationScreen() {
           </View>
         </View>
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Valor do empréstimo</Text>
+          <Text style={globalStyles.label}>Valor do empréstimo</Text>
           <TextInput
             style={styles.input}
             placeholder="Ex.: 10000,00"
@@ -185,7 +186,7 @@ function LoanSimulationScreen() {
           />
         </View>
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Número de parcelas</Text>
+          <Text style={globalStyles.label}>Número de parcelas</Text>
           <TextInput
             style={styles.input}
             placeholder={selectedProduct ? `Até ${selectedProduct.maximumTerm}` : "Ex.: 12"}
@@ -197,12 +198,12 @@ function LoanSimulationScreen() {
             returnKeyType="done"
           />
           {selectedProduct ? (
-            <Text style={styles.helpText}>
+            <Text style={styles.auxiliaryText}>
               Máximo permitido para este produto: {selectedProduct.maximumTerm} meses
             </Text>
           ) : null}
         </View>
-        {formError ? <Text style={styles.errorText}>{formError}</Text> : null}
+        {formError ? <Text style={globalStyles.textError}>{formError}</Text> : null}
         <View style={styles.actionContainer}>
           <PrimaryButton onPress={handleSubmit}>Simular</PrimaryButton>
         </View>
@@ -235,9 +236,6 @@ const styles = StyleSheet.create({
   formGroup: {
     gap: Spacings.quark,
   },
-  label: {
-    fontWeight: "600",
-  },
   input: {
     backgroundColor: Colors.greyscale10,
     borderColor: Colors.greyscale50,
@@ -251,9 +249,6 @@ const styles = StyleSheet.create({
     borderRadius: Spacings.nano,
     borderWidth: 1,
     padding: Spacings.micro,
-  },
-  selectorText: {
-    color: "#111",
   },
   dropdown: {
     backgroundColor: Colors.greyscale10,
@@ -269,21 +264,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacings.micro,
     paddingVertical: Spacings.micro,
   },
-  dropdownItemTitle: {
-    fontWeight: "600",
+  dropdownItemDescription: {
+    color: Colors.greyscale90,
   },
-  dropdownItemSub: {
-    color: "#555",
-  },
-  helpText: {
-    color: "#555",
+  auxiliaryText: {
+    color: Colors.greyscale110,
   },
   actionContainer: {
     gap: Spacings.quark,
     marginTop: Spacings.micro,
-  },
-  errorText: {
-    color: Colors.negative70,
-    marginBottom: Spacings.micro,
   },
 });

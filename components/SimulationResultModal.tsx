@@ -3,6 +3,7 @@ import { Modal, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import PrimaryButton from "./PrimaryButton";
 import { Colors, Spacings } from "../constants";
+import globalStyles from "../styles";
 import type { SimulationResult } from "../utils/definitions";
 import { formatCurrencyBRL, formatPercentBR } from "../utils/formatters";
 
@@ -17,34 +18,40 @@ function SimulationResultModal({ result, visible, onClose }: Props) {
     <Modal visible={visible} animationType="fade" onRequestClose={onClose} transparent>
       <View style={styles.overlay}>
         <View style={styles.card}>
-          <Text style={styles.title}>Resultado da simulação</Text>
+          <Text style={globalStyles.headingSmall}>Resultado da simulação</Text>
           {result ? (
             <ScrollView contentContainerStyle={{ gap: 8 }}>
               <View style={styles.row}>
-                <Text style={styles.label}>Produto</Text>
-                <Text style={styles.value}>{result.product.name}</Text>
+                <Text style={globalStyles.label}>Produto</Text>
+                <Text style={globalStyles.textSmallMedium}>{result.product.name}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.label}>Valor solicitado</Text>
-                <Text style={styles.value}>{formatCurrencyBRL(result.principal)}</Text>
+                <Text style={globalStyles.label}>Valor solicitado</Text>
+                <Text style={globalStyles.textSmallMedium}>
+                  {formatCurrencyBRL(result.principal)}
+                </Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.label}>Prazo</Text>
-                <Text style={styles.value}>{`${result.term} meses`}</Text>
+                <Text style={globalStyles.label}>Prazo</Text>
+                <Text style={globalStyles.textSmallMedium}>{`${result.term} meses`}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.label}>Taxa efetiva mensal</Text>
-                <Text style={styles.value}>{formatPercentBR(result.monthlyRate * 100)}</Text>
+                <Text style={globalStyles.label}>Taxa efetiva mensal</Text>
+                <Text style={globalStyles.textSmallMedium}>
+                  {formatPercentBR(result.monthlyRate * 100)}
+                </Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.label}>Parcela mensal</Text>
-                <Text style={styles.value}>{formatCurrencyBRL(result.payment)}</Text>
+                <Text style={globalStyles.label}>Parcela mensal</Text>
+                <Text style={globalStyles.textSmallMedium}>
+                  {formatCurrencyBRL(result.payment)}
+                </Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.label}>Valor total com juros</Text>
-                <Text style={styles.value}>{formatCurrencyBRL(result.total)}</Text>
+                <Text style={globalStyles.label}>Valor total com juros</Text>
+                <Text style={globalStyles.textSmallMedium}>{formatCurrencyBRL(result.total)}</Text>
               </View>
-              <Text style={styles.sectionTitle}>Memória de cálculo</Text>
+              <Text style={globalStyles.textStandardMedium}>Memória de cálculo</Text>
               {result.schedule.map((row) => (
                 <View key={row.month} style={styles.scheduleRow}>
                   <Text>{`Mês ${row.month}`}</Text>
@@ -79,25 +86,9 @@ const styles = StyleSheet.create({
     padding: Spacings.smaller,
     width: "100%",
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "700",
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-  },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  label: {
-    color: Colors.greyscale110,
-    fontWeight: "600",
-  },
-  value: {
-    color: Colors.greyscale130,
-    fontWeight: "500",
   },
   scheduleRow: {
     borderTopColor: Colors.greyscale30,

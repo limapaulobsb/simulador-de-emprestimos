@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Colors, Spacings } from "../constants";
+import globalStyles from "../styles";
 
 function PrimaryButton({
   children,
@@ -38,7 +39,7 @@ function PrimaryButton({
         {isLoading ? (
           <ActivityIndicator color={textColor} />
         ) : (
-          <Text style={[styles.text, { color: textColor }]}>{children}</Text>
+          <Text style={[globalStyles.textStandardMedium, { color: textColor }]}>{children}</Text>
         )}
       </Pressable>
     </View>
@@ -59,9 +60,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: Spacings.quark,
-  },
-  text: {
-    fontSize: 16,
-    fontWeight: "500",
   },
 });

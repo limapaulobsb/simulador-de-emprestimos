@@ -1,18 +1,12 @@
 import { Link, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 
-import {
-  ActivityIndicator,
-  FlatList,
-  RefreshControl,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 
 import { PrimaryButton } from "../../../components";
 import { Colors, Spacings } from "../../../constants";
 import api from "../../../lib/api";
+import globalStyles from "../../../styles";
 import type { LoanProduct } from "../../../utils/definitions";
 
 function LoanProductScreen() {
@@ -86,7 +80,7 @@ function LoanProductScreen() {
         refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={refreshProducts} />}
         renderItem={({ item }) => (
           <View style={styles.card}>
-            <Text style={styles.productName}>{item.name}</Text>
+            <Text style={globalStyles.textStandardMedium}>{item.name}</Text>
             <Text>
               Taxa anual: {item.annualInterestRate}% — Prazo máximo: {item.maximumTerm} meses
             </Text>
@@ -142,9 +136,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     gap: Spacings.quark,
     padding: Spacings.micro,
-  },
-  productName: {
-    fontSize: 16,
-    fontWeight: 600,
   },
 });
