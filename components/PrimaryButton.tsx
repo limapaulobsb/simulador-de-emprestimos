@@ -5,21 +5,41 @@ import { Colors } from "../constants";
 
 function PrimaryButton({
   children,
-  isLoading,
-  onPress,
+  variant = "primary",
+  isLoading = false,
+  onPress = () => {},
 }: {
   children: ReactNode;
+  variant?: "primary" | "secondary" | "secondaryOutlined";
   isLoading?: boolean;
   onPress?: () => void;
 }) {
+  let backgroundColor = Colors.secondary90;
+  let borderColor = "transparent";
+  let borderWidth = 0;
+  let textColor = Colors.greyscale10;
+
+  if (variant === "secondary") {
+    backgroundColor = Colors.primary90;
+  } else if (variant === "secondaryOutlined") {
+    backgroundColor = "transparent";
+    borderColor = Colors.primary90;
+    borderWidth = 1;
+    textColor = Colors.primary90;
+  }
+
   return (
-    <View style={styles.outerContainer}>
+    <View style={[styles.outerContainer, { backgroundColor, borderWidth, borderColor }]}>
       <Pressable
         style={({ pressed }) => [styles.innerContainer, { opacity: pressed ? 0.8 : 1 }]}
         onPress={onPress}
         disabled={isLoading}
       >
-        {isLoading ? <ActivityIndicator /> : <Text style={styles.text}>{children}</Text>}
+        {isLoading ? (
+          <ActivityIndicator color={textColor} />
+        ) : (
+          <Text style={[styles.text, { color: textColor }]}>{children}</Text>
+        )}
       </Pressable>
     </View>
   );
@@ -30,20 +50,18 @@ export default PrimaryButton;
 const styles = StyleSheet.create({
   outerContainer: {
     borderRadius: 8,
-    height: 42,
+    height: 48,
+    minWidth: 48,
     overflow: "hidden",
-    width: 180,
   },
   innerContainer: {
     alignItems: "center",
-    backgroundColor: Colors.primary90,
     flex: 1,
     justifyContent: "center",
-    padding: 10,
+    padding: 4,
   },
   text: {
-    color: Colors.greyscale10,
     fontSize: 16,
-    fontWeight: 500,
+    fontWeight: "500",
   },
 });

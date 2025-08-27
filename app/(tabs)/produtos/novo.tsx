@@ -120,8 +120,12 @@ function NewProductScreen() {
         </View>
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
         <View style={styles.actionContainer}>
-          <PrimaryButton onPress={() => router.back()}>Cancelar</PrimaryButton>
-          <PrimaryButton onPress={handleSubmit}>Salvar</PrimaryButton>
+          <PrimaryButton variant="secondaryOutlined" onPress={() => router.back()}>
+            Cancelar
+          </PrimaryButton>
+          <PrimaryButton onPress={handleSubmit}>
+            Salvar
+          </PrimaryButton>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
