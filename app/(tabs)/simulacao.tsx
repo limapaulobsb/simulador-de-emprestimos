@@ -176,9 +176,9 @@ function LoanSimulationScreen() {
         <View style={styles.formGroup}>
           <Text style={globalStyles.label}>Valor do empréstimo</Text>
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder="Ex.: 10000,00"
-            placeholderTextColor="#999"
+            placeholderTextColor={Colors.greyscale90}
             keyboardType="decimal-pad"
             value={amount}
             onChangeText={setAmount}
@@ -188,9 +188,9 @@ function LoanSimulationScreen() {
         <View style={styles.formGroup}>
           <Text style={globalStyles.label}>Número de parcelas</Text>
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder={selectedProduct ? `Até ${selectedProduct.maximumTerm}` : "Ex.: 12"}
-            placeholderTextColor="#999"
+            placeholderTextColor={Colors.greyscale90}
             keyboardType="number-pad"
             value={installments}
             maxLength={3}
@@ -235,13 +235,6 @@ const styles = StyleSheet.create({
   },
   formGroup: {
     gap: Spacings.quark,
-  },
-  input: {
-    backgroundColor: Colors.greyscale10,
-    borderColor: Colors.greyscale50,
-    borderRadius: Spacings.nano,
-    borderWidth: 1,
-    padding: Spacings.micro,
   },
   selector: {
     backgroundColor: Colors.greyscale10,

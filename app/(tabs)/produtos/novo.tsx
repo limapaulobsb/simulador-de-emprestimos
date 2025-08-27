@@ -83,9 +83,9 @@ function NewProductScreen() {
         <View style={styles.formGroup}>
           <Text style={globalStyles.label}>Nome</Text>
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder="Ex.: Empréstimo Pessoal"
-            placeholderTextColor="#999"
+            placeholderTextColor={Colors.greyscale90}
             value={name}
             onChangeText={setName}
             autoCapitalize="sentences"
@@ -95,9 +95,9 @@ function NewProductScreen() {
         <View style={styles.formGroup}>
           <Text style={globalStyles.label}>Taxa anual (%)</Text>
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder="Ex.: 12.5"
-            placeholderTextColor="#999"
+            placeholderTextColor={Colors.greyscale90}
             keyboardType="number-pad"
             value={annualRate}
             maxLength={5}
@@ -108,9 +108,9 @@ function NewProductScreen() {
         <View style={styles.formGroup}>
           <Text style={globalStyles.label}>Prazo máximo (meses)</Text>
           <TextInput
-            style={styles.input}
+            style={globalStyles.input}
             placeholder="Ex.: 60"
-            placeholderTextColor="#999"
+            placeholderTextColor={Colors.greyscale90}
             keyboardType="number-pad"
             value={maximumTerm}
             maxLength={3}
@@ -139,13 +139,6 @@ const styles = StyleSheet.create({
   },
   formGroup: {
     gap: Spacings.quark,
-  },
-  input: {
-    backgroundColor: Colors.greyscale10,
-    borderColor: Colors.greyscale50,
-    borderRadius: Spacings.nano,
-    borderWidth: 1,
-    padding: Spacings.micro,
   },
   actionContainer: {
     gap: Spacings.quark,

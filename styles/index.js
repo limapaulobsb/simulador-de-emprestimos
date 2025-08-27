@@ -3,9 +3,13 @@ import { StyleSheet } from "react-native";
 import { Colors, Spacings } from "../constants";
 
 const globalStyles = StyleSheet.create({
+  headingLarge: {
+    fontSize: 32,
+    fontWeight: "600",
+  },
   headingStandard: {
     fontSize: 28,
-    fontWeight: "500",
+    fontWeight: "600",
   },
   headingSmall: {
     fontSize: 24,
@@ -14,6 +18,15 @@ const globalStyles = StyleSheet.create({
   headingTiny: {
     fontSize: 20,
     fontWeight: "500",
+  },
+  input: {
+    backgroundColor: Colors.greyscale10,
+    borderColor: Colors.greyscale50,
+    borderRadius: Spacings.nano,
+    borderWidth: 1,
+    height: Spacings.larger,
+    fontSize: 18,
+    paddingHorizontal: Spacings.micro,
   },
   label: {
     color: Colors.greyscale110,

@@ -1,20 +1,56 @@
+import { Image } from "expo-image";
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform } from "react-native";
 
 import { PrimaryButton } from "@/components";
+import { Colors, Spacings } from "@/constants";
+import globalStyles from "@/styles";
 
-export default function Index() {
+function IndexScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -85}
     >
-      <Link href="/produtos" push asChild>
-        <PrimaryButton>Entrar</PrimaryButton>
-      </Link>
-    </View>
+      <Image
+        source={require("../assets/images/background.png")}
+        contentPosition="bottom center"
+        style={styles.image}
+      />
+      <View style={styles.content}>
+        <Text style={[globalStyles.headingStandard, { color: Colors.greyscale10 }]}>Simulador de Empréstimos</Text>
+        <View style={styles.form}>
+          <TextInput
+            style={globalStyles.input}
+            placeholder="Digite seu nome..."
+            placeholderTextColor={Colors.greyscale90}
+          />
+          <Link href="/produtos" push asChild>
+            <PrimaryButton>Entrar</PrimaryButton>
+          </Link>
+        </View>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
+
+export default IndexScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  image: {
+    flexGrow: 1,
+  },
+  content: {
+    backgroundColor: Colors.primary110,
+    gap: Spacings.medium,
+    height: 280,
+    paddingHorizontal: Spacings.medium,
+  },
+  form: {
+    gap: Spacings.micro,
+  }
+});
