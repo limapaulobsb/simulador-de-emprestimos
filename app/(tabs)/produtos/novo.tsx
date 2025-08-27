@@ -13,6 +13,7 @@ import {
   View,
 } from "react-native";
 
+import { PrimaryButton } from "../../../components";
 import api from "../../../lib/api";
 
 function NewProductScreen() {
@@ -96,8 +97,9 @@ function NewProductScreen() {
             style={styles.input}
             placeholder="Ex.: 12.5"
             placeholderTextColor="#999"
-            keyboardType="decimal-pad"
+            keyboardType="number-pad"
             value={annualRate}
+            maxLength={5}
             onChangeText={setAnnualRate}
             returnKeyType="next"
           />
@@ -110,19 +112,15 @@ function NewProductScreen() {
             placeholderTextColor="#999"
             keyboardType="number-pad"
             value={maximumTerm}
+            maxLength={3}
             onChangeText={setMaximumTerm}
             returnKeyType="done"
           />
         </View>
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
         <View style={styles.actionContainer}>
-          <Button
-            title="Cancelar"
-            color="#666"
-            onPress={() => router.back()}
-            disabled={isLoading}
-          />
-          <Button title="Salvar" onPress={handleSubmit} />
+          <PrimaryButton onPress={() => router.back()}>Cancelar</PrimaryButton>
+          <PrimaryButton onPress={handleSubmit}>Salvar</PrimaryButton>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

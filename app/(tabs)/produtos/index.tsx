@@ -11,6 +11,7 @@ import {
   View,
 } from "react-native";
 
+import { PrimaryButton } from "../../../components";
 import api from "../../../lib/api";
 import type { LoanProduct } from "../../../utils/definitions";
 
@@ -102,7 +103,7 @@ function LoanProductScreen() {
         }
       />
       <Link href="/produtos/novo" push asChild>
-        <Button title="Novo Produto" />
+        <PrimaryButton>Novo Produto</PrimaryButton>
       </Link>
     </View>
   );

@@ -15,7 +15,7 @@ import {
   View,
 } from "react-native";
 
-import SimulationResultModal from "../../components/SimulationResultModal";
+import { PrimaryButton, SimulationResultModal } from "../../components";
 import api from "../../lib/api";
 import { simulateLoan } from "../../utils/calculations";
 import type { LoanProduct, SimulationResult } from "../../utils/definitions";
@@ -192,6 +192,7 @@ function LoanSimulationScreen() {
             placeholderTextColor="#999"
             keyboardType="number-pad"
             value={installments}
+            maxLength={3}
             onChangeText={setInstallments}
             returnKeyType="done"
           />
@@ -203,7 +204,7 @@ function LoanSimulationScreen() {
         </View>
         {formError ? <Text style={styles.errorText}>{formError}</Text> : null}
         <View style={styles.actionContainer}>
-          <Button title="Simular" onPress={handleSubmit} />
+          <PrimaryButton onPress={handleSubmit}>Simular</PrimaryButton>
         </View>
       </ScrollView>
       <SimulationResultModal
